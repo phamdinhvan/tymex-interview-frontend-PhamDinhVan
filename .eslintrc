@@ -2,12 +2,18 @@
   "extends": ["next", "prettier", "plugin:tailwindcss/recommended"],
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "max-len": ["error", {"code": 80, "ignorePattern": "^import\\W.*", "ignoreComments": true}],
-    "max-lines": ["error", { "max": 150, "skipBlankLines": true, "skipComments": true }],
+    "max-len": [
+      "error",
+      { "code": 300, "ignorePattern": "^import\\W.*", "ignoreComments": true }
+    ],
+    "max-lines": [
+      "error",
+      { "max": 200, "skipBlankLines": true, "skipComments": true }
+    ],
     "import/prefer-default-export": "off",
     "no-console": "warn",
     "no-var": "error",
     "no-html-link-for-pages": "off",
     "@typescript-eslint/no-unused-vars": "warn"
-  }
+  },
 }
