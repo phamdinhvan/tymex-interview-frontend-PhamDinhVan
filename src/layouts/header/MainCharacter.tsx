@@ -1,8 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 const MainCharacter = () => {
   return (
-    <div className='absolute bottom-0 right-[8%]'>
-      <div className='relative'>
+    <div className='absolute bottom-0 right-[8%] max-2xl:w-1/5 2xl:right-0'>
+      <div className='relative px-4'>
         <img
           src='/images/header/main-cr.png'
           alt='Main character'
@@ -14,7 +13,7 @@ const MainCharacter = () => {
             alt='The DJ label'
             className='w-full pb-1'
           />
-          <div className='absolute inset-0 flex items-center justify-center font-[family-name:var(--drone-bold)] text-7xl font-bold text-white'>
+          <div className='absolute inset-0 flex items-center justify-center font-[family-name:var(--drone-bold)] text-4xl font-bold text-white 2xl:text-7xl'>
             THE DJ
           </div>
         </div>

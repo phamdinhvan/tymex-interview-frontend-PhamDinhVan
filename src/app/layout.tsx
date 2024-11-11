@@ -1,12 +1,16 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
+import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
 
 const droneRangerProBold = localFont({
   src: './fonts/dronerangerpro_bold.otf',
   variable: '--drone-bold',
   weight: '100 900',
 })
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Card NFT',
@@ -20,8 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={`${droneRangerProBold.variable} antialiased`}>
-        {children}
+      <body
+        className={`${droneRangerProBold.variable} ${inter.className} antialiased`}
+      >
+        <AntdRegistry>{children}</AntdRegistry>
       </body>
     </html>
   )

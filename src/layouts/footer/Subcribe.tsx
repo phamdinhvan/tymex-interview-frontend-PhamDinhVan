@@ -1,7 +1,7 @@
 const Subcribe = () => {
   return (
     <div>
-      <h3 className='mb-4 text-lg font-bold'>
+      <h3 className='mb-4 font-[family-name:var(--drone-bold)] text-lg font-bold'>
         SUBCRIBE TO RECEIVE OUR LATEST UPDATE
       </h3>
       <div className='flex gap-2'>

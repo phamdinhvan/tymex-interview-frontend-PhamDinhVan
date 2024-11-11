@@ -1,8 +1,10 @@
 const Navigation = () => {
   return (
-    <div>
-      <h3 className='mb-4 text-lg font-bold'>NAVIGATION</h3>
-      <div className='grid grid-cols-3 gap-4'>
+    <div className='text-center md:text-left'>
+      <h3 className='mb-4 font-[family-name:var(--drone-bold)] text-lg font-bold'>
+        NAVIGATION
+      </h3>
+      <div className='grid grid-cols-1 gap-4 sm:grid-cols-3'>
         <div>
           <a href='#' className='mb-2 block'>
             Home

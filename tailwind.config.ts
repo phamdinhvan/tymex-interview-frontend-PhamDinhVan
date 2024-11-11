@@ -16,6 +16,9 @@ export default {
       backgroundImage: {
         'header-bg': "url('/images/header/background.png')",
       },
+      maxWidth: {
+        lg: '30rem',
+      },
     },
   },
   plugins: [],
