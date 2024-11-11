@@ -94,11 +94,11 @@ const Header = () => {
       <div className='mx-auto max-w-[1700px] p-12'>
         <img src='/images/header/na.png' alt='na' />
       </div>
-      <div className='relative 2xl:h-[300px]'>
+      <div className='relative xl:h-[240px] 2xl:h-[300px]'>
         <img
           src='/images/header/bg.png'
           alt='bottom-bg'
-          className='size-full'
+          className='size-full max-xl:h-[240px] max-xl:object-cover 2xl:h-[300px]'
         />
         <div className='absolute inset-0'>
           <div className='relative mx-auto h-full max-w-[1700px]'>

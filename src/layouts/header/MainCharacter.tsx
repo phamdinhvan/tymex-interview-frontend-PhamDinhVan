@@ -1,6 +1,12 @@
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 const MainCharacter = () => {
   return (
-    <div className='absolute bottom-0 right-[8%] max-2xl:w-1/5 2xl:right-0'>
+    <div className='absolute bottom-0 right-[8%] hidden max-2xl:w-1/5 xl:block 2xl:right-0'>
       <div className='relative px-4'>
         <img
           src='/images/header/main-cr.png'
