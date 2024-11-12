@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
+import { ConfigProvider } from 'antd'
 
 const droneRangerProBold = localFont({
   src: './fonts/dronerangerpro_bold.otf',
@@ -27,7 +28,17 @@ export default function RootLayout({
       <body
         className={`${droneRangerProBold.variable} ${inter.className} antialiased`}
       >
-        <AntdRegistry>{children}</AntdRegistry>
+        <AntdRegistry>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimary: '#DA458F',
+              },
+            }}
+          >
+            {children}
+          </ConfigProvider>
+        </AntdRegistry>
       </body>
     </html>
   )

@@ -1,0 +1,35 @@
+/* override antd styles */
+.ant-input-affix-wrapper {
+  background-color: transparent !important;
+}
+.ant-input {
+  color: white !important;
+}
+
+.ant-input::placeholder {
+  color: #89888b !important;
+}
+
+.ant-select-selector {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+.ant-select-arrow {
+  color: white !important;
+}
+
+.ant-slider-rail {
+  background-color: #3a3841 !important;
+}
+
+.ant-tooltip-inner {
+  background: linear-gradient(91.47deg, #da458f -6%, #da34dd 113.05%) !important;
+}
+
+.ant-form-item-label > label {
+  color: #89888B !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+}

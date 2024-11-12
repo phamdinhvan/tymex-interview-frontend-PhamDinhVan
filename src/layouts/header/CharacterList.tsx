@@ -1,5 +1,7 @@
+import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination } from 'swiper/modules'
+import Image from 'next/image'
+
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -7,13 +9,14 @@ import 'swiper/css/pagination'
 const CharacterList = () => {
   return (
     <div className='bottom-0 left-[8%] xl:absolute 2xl:left-0'>
-      {/* Desktop view (>1280px) */}
       <div className='hidden xl:flex xl:flex-wrap xl:gap-10 xl:p-3 2xl:gap-16 2xl:p-5'>
         <div className='flex flex-col items-center max-2xl:w-[16%]'>
           <div className='cursor-pointer items-center bg-transparent transition-transform duration-200 hover:-translate-y-1'>
-            <img
+            <Image
               src='/images/header/cr-list.png'
               alt='character'
+              width={200}
+              height={200}
               className='mb-3 object-cover'
             />
           </div>
@@ -23,9 +26,11 @@ const CharacterList = () => {
         </div>
         <div className='flex flex-col items-center max-2xl:w-[16%]'>
           <div className='cursor-pointer items-center bg-transparent transition-transform duration-200 hover:-translate-y-1'>
-            <img
+            <Image
               src='/images/header/cr-list.png'
               alt='character'
+              width={200}
+              height={200}
               className='mb-3 object-cover'
             />
           </div>
@@ -35,9 +40,11 @@ const CharacterList = () => {
         </div>
         <div className='flex flex-col items-center max-2xl:w-[16%]'>
           <div className='cursor-pointer items-center bg-transparent transition-transform duration-200 hover:-translate-y-1'>
-            <img
+            <Image
               src='/images/header/cr-list.png'
               alt='character'
+              width={200}
+              height={200}
               className='mb-3 object-cover'
             />
           </div>
@@ -47,9 +54,11 @@ const CharacterList = () => {
         </div>
         <div className='flex flex-col items-center max-2xl:w-[16%]'>
           <div className='cursor-pointer items-center bg-transparent transition-transform duration-200 hover:-translate-y-1'>
-            <img
+            <Image
               src='/images/header/cr-list.png'
               alt='character'
+              width={200}
+              height={200}
               className='mb-3 object-cover'
             />
           </div>
@@ -59,7 +68,6 @@ const CharacterList = () => {
         </div>
       </div>
 
-      {/* Mobile view (<=1280px) */}
       <div className='xl:hidden'>
         <Swiper
           modules={[Navigation]}
@@ -88,9 +96,11 @@ const CharacterList = () => {
             <SwiperSlide key={index}>
               <div className='flex flex-col items-center'>
                 <div className='cursor-pointer items-center bg-transparent transition-transform duration-200 hover:-translate-y-1'>
-                  <img
+                  <Image
                     src='/images/header/cr-list.png'
                     alt='character'
+                    width={200}
+                    height={200}
                     className='mb-3 object-cover'
                   />
                 </div>

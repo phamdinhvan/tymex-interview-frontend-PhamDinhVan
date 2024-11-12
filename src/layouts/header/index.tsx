@@ -3,12 +3,15 @@
 import CharacterList from './CharacterList'
 import MainCharacter from './MainCharacter'
 
+import { cn } from '@/utils/cn'
+import { GlobalOutlined, MenuOutlined } from '@ant-design/icons'
 import { Drawer } from 'antd'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
-import { MenuOutlined, GlobalOutlined } from '@ant-design/icons'
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false)
+  const [activeItem, setActiveItem] = useState<string>('MARKETPLACE ROADMAP')
 
   const showDrawer = () => {
     setOpen(true)
@@ -22,7 +25,7 @@ const Header = () => {
     { label: 'HOME', href: '#' },
     { label: 'ABOUT US', href: '#' },
     { label: 'OUR TEAMS', href: '#' },
-    { label: 'MARKETPLACE ROADMAP', href: '#', active: true },
+    { label: 'MARKETPLACE ROADMAP', href: '#' },
     { label: 'WHITEPAPER', href: '#' },
   ]
 
@@ -32,17 +35,38 @@ const Header = () => {
         <div className='mx-auto flex h-16 max-w-[1700px] items-center justify-between px-4 xl:justify-around'>
           <nav className='hidden items-center space-x-16 font-[family-name:var(--drone-bold)] text-sm xl:flex'>
             {menuItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`${
-                  item.active
-                    ? 'border-b-2 border-pink-500 text-pink-500'
-                    : 'text-white hover:text-pink-500'
-                }`}
-              >
-                {item.label}
-              </a>
+              <div key={item.label} className='relative'>
+                <a
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    setActiveItem(item.label)
+                  }}
+                  className={cn(
+                    'relative',
+                    activeItem === item.label &&
+                      'bg-gradient-to-r from-[#DA458F] to-[#DA34DD] bg-clip-text text-transparent',
+                    activeItem !== item.label &&
+                      'text-white hover:bg-gradient-to-r hover:from-[#DA458F] hover:to-[#DA34DD] hover:bg-clip-text hover:text-transparent',
+                  )}
+                >
+                  {item.label}
+                  <AnimatePresence>
+                    <motion.div
+                      className='absolute bottom-[-5px] left-0 h-0.5 bg-gradient-to-r from-[#DA458F] to-[#DA34DD]'
+                      initial={{ width: 0 }}
+                      animate={{
+                        width: activeItem === item.label ? '100%' : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        transformOrigin:
+                          activeItem === item.label ? 'left' : 'right',
+                      }}
+                    />
+                  </AnimatePresence>
+                </a>
+              </div>
             ))}
           </nav>
 
@@ -54,7 +78,7 @@ const Header = () => {
           </button>
 
           <div className='flex items-center space-x-4'>
-            <button className='rounded-md bg-pink-500 px-6 py-2 text-white hover:bg-pink-600'>
+            <button className='hover:btn-shiny rounded-md bg-gradient-to-r from-[#DA458F] to-[#DA34DD] px-4 py-2 text-white hover:bg-pink-500'>
               Connect Wallet
             </button>
             <button className='rounded-full bg-transparent p-2 text-white hover:bg-gray-800'>
@@ -79,12 +103,17 @@ const Header = () => {
             <a
               key={item.label}
               href={item.href}
-              onClick={onClose}
-              className={`${
-                item.active
-                  ? 'text-pink-500'
-                  : 'text-gray-800 hover:text-pink-500'
-              } py-2`}
+              onClick={(e) => {
+                e.preventDefault()
+                setActiveItem(item.label)
+                onClose()
+              }}
+              className={cn(
+                'py-2',
+                activeItem === item.label
+                  ? 'bg-gradient-to-r from-[#DA458F] to-[#DA34DD] bg-clip-text text-transparent'
+                  : 'text-gray-800 hover:bg-gradient-to-r hover:from-[#DA458F] hover:to-[#DA34DD] hover:bg-clip-text hover:text-transparent',
+              )}
             >
               {item.label}
             </a>
@@ -92,9 +121,11 @@ const Header = () => {
         </div>
       </Drawer>
       <div className='mx-auto max-w-[1700px] p-12'>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src='/images/header/na.png' alt='na' />
       </div>
       <div className='relative xl:h-[240px] 2xl:h-[300px]'>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src='/images/header/bg.png'
           alt='bottom-bg'

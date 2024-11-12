@@ -17,5 +17,26 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
+}
+
+@keyframes shine {
+  0% {
+    background-position: right -100% top 0;
+  }
+  100% {
+    background-position: right 100% top 0;
+  }
+}
+
+@layer utilities {
+  .btn-shiny {
+    background-image: linear-gradient(to right, transparent 33%, rgba(255, 255, 255, 0.3) 50%, transparent 66%);
+    background-size: 300% 100%;
+    animation: shine 1s ease-in-out;
+  }
+
+  .shine {
+    animation: shine 1s ease-in-out;
+  }
 }
