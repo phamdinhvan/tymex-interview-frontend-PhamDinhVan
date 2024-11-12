@@ -10,16 +10,12 @@ import ProductList from './ProductList'
 
 //override antd styles
 import './index.css'
+import { ITEMS_PER_PAGE } from '@/constants/common'
 
 const ProductMarketplace = () => {
-  const ITEMS_PER_PAGE = 20
-  const REFRESH_INTERVAL = 60000
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const { products, setQueryParams, setPage, handleLoadMore } = useProducts(
-    {},
-    ITEMS_PER_PAGE,
-    REFRESH_INTERVAL,
-  )
+  const { products, loading, setQueryParams, setPage, handleLoadMore } =
+    useProducts({})
   const { categories } = useCategories()
 
   const onSearchProduct = (values: any) => {
@@ -63,6 +59,7 @@ const ProductMarketplace = () => {
             products={products}
             onLoadMore={handleLoadMore}
             itemsPerPage={ITEMS_PER_PAGE}
+            loading={loading}
           />
         </div>
       </div>

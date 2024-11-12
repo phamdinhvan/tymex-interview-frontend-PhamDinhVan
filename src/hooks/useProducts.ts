@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts, ProductQueryParams } from '@/utils/api'
 import { Product } from '@/interfaces/common'
+import { ITEMS_PER_PAGE, REFRESH_INTERVAL } from '@/constants/common'
 
 export const useProducts = (
   initialQueryParams: ProductQueryParams = {},
-  itemsPerPage: number,
-  refreshInterval: number,
+  itemsPerPage: number = ITEMS_PER_PAGE,
+  refreshInterval: number = REFRESH_INTERVAL,
 ) => {
   const [products, setProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState(true)
-  const [page, setPage] = useState(1)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [page, setPage] = useState<number>(1)
   const [queryParams, setQueryParams] =
     useState<ProductQueryParams>(initialQueryParams)
 
