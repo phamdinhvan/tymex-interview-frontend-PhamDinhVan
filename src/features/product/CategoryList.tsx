@@ -1,4 +1,4 @@
-import { Category } from '@/layouts/content/index'
+import { Category } from '@/interfaces/common'
 import { cn } from '@/utils/cn'
 
 interface CategoryListProps {

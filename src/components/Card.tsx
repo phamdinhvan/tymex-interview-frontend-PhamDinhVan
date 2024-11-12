@@ -61,12 +61,12 @@ export const HoverEffect = ({
                   </div>
                   <HeartFilled />
                 </div>
-                {/* <Image
+                <Image
                   src='/images/content/main-cr.png'
                   alt='character-img'
                   width={235}
                   height={197}
-                /> */}
+                />
               </div>
               <div className='flex items-center justify-between px-2 py-4'>
                 <div className='text-base font-bold'>The DJ</div>

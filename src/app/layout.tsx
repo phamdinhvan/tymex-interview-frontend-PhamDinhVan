@@ -16,6 +16,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Card NFT',
   description: 'New Arrival Card NFT',
+  icons: {
+    icon: '/images/logo.png',
+  },
 }
 
 export default function RootLayout({

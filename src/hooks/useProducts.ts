@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchProducts, ProductQueryParams } from '@/utils/api'
-import { Product } from '@/layouts/content/index'
+import { Product } from '@/interfaces/common'
 
 export const useProducts = (
   initialQueryParams: ProductQueryParams = {},

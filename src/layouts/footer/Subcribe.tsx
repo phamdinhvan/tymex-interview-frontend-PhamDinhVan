@@ -1,3 +1,5 @@
+import ShinyButton from '@/components/ShinyButton'
+
 const Subcribe = () => {
   return (
     <div>
@@ -10,9 +12,7 @@ const Subcribe = () => {
           placeholder='Your email address'
           className='flex-1 rounded border border-gray-600 bg-transparent px-4 py-2'
         />
-        <button className='hover:btn-shiny rounded-md bg-gradient-to-r from-[#DA458F] to-[#DA34DD] px-2 py-1 text-white hover:bg-pink-500'>
-          Subcribe
-        </button>
+        <ShinyButton title='Subcribe' className='text-sm' />
       </div>
     </div>
   )

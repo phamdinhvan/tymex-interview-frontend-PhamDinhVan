@@ -1,5 +1,6 @@
 import { Form, Input, Select, Slider, Button, Space } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
+import ShinyButton from '@/components/ShinyButton'
 
 interface FilterFormProps {
   onSearch: (values: any) => void
@@ -33,6 +34,15 @@ const FilterForm: React.FC<FilterFormProps> = ({ onSearch, onReset }) => {
           className='mb-6'
           tooltip={{
             formatter: (value) => `${value} ETH`,
+          }}
+          styles={{
+            track: {
+              background: 'transparent',
+            },
+            tracks: {
+              background:
+                ' linear-gradient(91.47deg, #DA458F -6%, #DA34DD 113.05%)',
+            },
           }}
         />
       </Form.Item>
@@ -91,12 +101,11 @@ const FilterForm: React.FC<FilterFormProps> = ({ onSearch, onReset }) => {
         <Button onClick={onReset} className='btn-shiny'>
           Reset Filter
         </Button>
-        <button
+        <ShinyButton
           type='submit'
-          className='hover:btn-shiny h-[34px] w-[120px] rounded-md bg-gradient-to-r from-[#DA458F] to-[#DA34DD] px-2 py-1 font-semibold text-white hover:bg-pink-500'
-        >
-          Search
-        </button>
+          title='Search'
+          className='h-[34px] w-[120px] font-semibold text-white'
+        />
       </div>
     </Form>
   )

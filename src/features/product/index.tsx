@@ -2,40 +2,16 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { useProducts } from './useProducts'
-import { useCategories } from './useCategories'
-import FilterForm from './Filter'
+import { useProducts } from '@/hooks/useProducts'
+import { useCategories } from '@/hooks/useCategories'
+import FilterForm from './FilterForm'
 import CategoryList from './CategoryList'
 import ProductList from './ProductList'
+
 //override antd styles
 import './index.css'
 
-export interface Product {
-  id: number
-  title: string
-  category: string
-  price: number
-  isFavorite: boolean
-  createdAt: number
-  theme: string
-  tier: string
-  imageId: number
-  author: {
-    firstName: string
-    lastName: string
-    email: string
-    gender: string
-    avatar: string
-    onlineStatus: string
-  }
-}
-
-export interface Category {
-  id: number
-  name: string
-}
-
-const MarketplaceGrid = () => {
+const ProductMarketplace = () => {
   const ITEMS_PER_PAGE = 20
   const REFRESH_INTERVAL = 60000
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
@@ -46,7 +22,7 @@ const MarketplaceGrid = () => {
   )
   const { categories } = useCategories()
 
-  const handleSearch = (values: any) => {
+  const onSearchProduct = (values: any) => {
     const { search, priceRange, rarity, sort } = values
     const newQueryParams = {
       title_like: search,
@@ -59,29 +35,29 @@ const MarketplaceGrid = () => {
     setPage(1)
   }
 
-  const handleCategoryClick = (categoryName?: string) => {
+  const onCateClick = (categoryName?: string) => {
     setActiveCategory(categoryName)
     setQueryParams((prev) => ({ ...prev, category: categoryName }))
     setPage(1)
   }
 
-  const handleResetFilters = () => {
+  const onResetFilters = () => {
     setQueryParams({})
     setPage(1)
   }
 
   return (
-    <div className='size-full bg-[url("/images/content/content-bg.png")] bg-cover bg-center bg-no-repeat'>
+    <main className='size-full bg-[url("/images/content/content-bg.png")] bg-cover bg-center bg-no-repeat'>
       <div className='mx-auto flex max-w-[1700px] justify-center gap-6 px-10 py-20'>
         <div className='w-[380px]'>
-          <FilterForm onSearch={handleSearch} onReset={handleResetFilters} />
+          <FilterForm onSearch={onSearchProduct} onReset={onResetFilters} />
         </div>
 
         <div>
           <CategoryList
             categories={categories}
             activeCategory={activeCategory}
-            onCategoryClick={handleCategoryClick}
+            onCategoryClick={onCateClick}
           />
           <ProductList
             products={products}
@@ -97,8 +73,8 @@ const MarketplaceGrid = () => {
         height={200}
         className='w-full object-cover'
       />
-    </div>
+    </main>
   )
 }
 
-export default MarketplaceGrid
+export default ProductMarketplace

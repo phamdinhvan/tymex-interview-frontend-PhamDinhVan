@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchCategories } from '@/utils/api'
-import { Category } from '.'
-
+import { Category } from '@/interfaces/common'
 export const useCategories = () => {
   const [categories, setCategories] = useState<Category[]>([])
 

@@ -1,5 +1,6 @@
 'use client'
 
+import ShinyButton from '@/components/ShinyButton'
 import CharacterList from './CharacterList'
 import MainCharacter from './MainCharacter'
 
@@ -78,9 +79,7 @@ const Header = () => {
           </button>
 
           <div className='flex items-center space-x-4'>
-            <button className='hover:btn-shiny rounded-md bg-gradient-to-r from-[#DA458F] to-[#DA34DD] px-4 py-2 text-white hover:bg-pink-500'>
-              Connect Wallet
-            </button>
+            <ShinyButton title='Connect Wallet' className='px-4 text-sm' />
             <button className='rounded-full bg-transparent p-2 text-white hover:bg-gray-800'>
               <GlobalOutlined className='text-xl' />
             </button>
