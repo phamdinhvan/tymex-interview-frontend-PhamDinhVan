@@ -3,6 +3,7 @@ import { HeartFilled, HeartOutlined } from '@ant-design/icons'
 import { Avatar } from 'antd'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useState } from 'react'
 
 interface ProductCardProps {
   tier: string
@@ -24,7 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   author,
 }) => {
   //random background color
-  const randomGradient = () => {
+  const [gradient] = useState(() => {
     const gradientColors = [
       'from-[#49DD81] to-[#22B4C6]',
       'from-[#43A6F6] to-[#5868F3]',
@@ -34,12 +35,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
     ]
     const randomIndex = Math.floor(Math.random() * gradientColors.length)
     return gradientColors[randomIndex]
-  }
+  })
 
   //random product image
-  const randomImage = () => {
-    return `/images/content/cr-${Math.floor(Math.random() * 5) + 1}.png`
-  }
+  const [imagePath] = useState(
+    () => `/images/content/cr-${Math.floor(Math.random() * 5) + 1}.png`,
+  )
 
   return (
     <motion.div
@@ -50,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       whileTap={{ scale: 0.95 }}
     >
       <div className='m-2 size-full cursor-pointer rounded-lg bg-[#3A384199] p-4'>
-        <div className={cn('rounded-lg bg-gradient-to-r', randomGradient())}>
+        <div className={cn('rounded-lg bg-gradient-to-r', gradient)}>
           <div className='flex items-center justify-between p-2'>
             <div className='w-fit rounded bg-[#313B4580] px-2 py-1 text-xs'>
               {tier}
@@ -63,7 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
           <div className='flex w-full justify-center'>
             <Image
-              src={randomImage()}
+              src={imagePath}
               alt='character-img'
               width={280}
               height={197}
