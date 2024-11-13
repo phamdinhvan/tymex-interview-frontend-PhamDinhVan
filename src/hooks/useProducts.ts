@@ -58,5 +58,34 @@ export const useProducts = (
     }
   }
 
-  return { products, loading, setQueryParams, setPage, handleLoadMore }
+  const handleSearch = async (
+    searchValue: string = '',
+    searchPage: number = 1,
+    searchLimit: number = itemsPerPage,
+  ) => {
+    setLoading(true)
+    try {
+      const data = await fetchProducts({
+        ...queryParams,
+        _page: searchPage,
+        _limit: searchLimit,
+        title_like: searchValue,
+      })
+      setProducts(data)
+      setPage(searchPage)
+    } catch (error) {
+      throw error
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return {
+    products,
+    loading,
+    setQueryParams,
+    setPage,
+    handleLoadMore,
+    handleSearch,
+  }
 }

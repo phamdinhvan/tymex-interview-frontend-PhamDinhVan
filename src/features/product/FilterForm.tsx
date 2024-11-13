@@ -17,15 +17,6 @@ const FilterForm: React.FC<FilterFormProps> = ({ onSearch, onReset }) => {
 
   return (
     <Form form={form} onFinish={onSearch} layout='vertical'>
-      <Form.Item name='search'>
-        <Input
-          prefix={<SearchOutlined className='!text-[#89888B]' />}
-          placeholder='Quick search'
-          className='w-full bg-transparent'
-          size='large'
-          allowClear
-        />
-      </Form.Item>
       <Form.Item
         name='priceRange'
         label='PRICE'

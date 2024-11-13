@@ -1,44 +1,66 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useProducts } from '@/hooks/useProducts'
 import { useCategories } from '@/hooks/useCategories'
 import FilterForm from './FilterForm'
 import CategoryList from './CategoryList'
 import ProductList from './ProductList'
-import { Button, Drawer } from 'antd'
-import { FilterOutlined } from '@ant-design/icons'
+import { Button, Drawer, Input } from 'antd'
+import {
+  CloseOutlined,
+  FilterOutlined,
+  SearchOutlined,
+} from '@ant-design/icons'
+import { ITEMS_PER_PAGE } from '@/constants/common'
+import { ProductQueryParams } from '@/utils/api'
 
 //override antd styles
 import './index.css'
-import { ITEMS_PER_PAGE } from '@/constants/common'
-import { ProductQueryParams } from '@/utils/api'
+import { useDebounce } from '@/hooks/useDebounce'
 
 const ProductMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [isDrawerVisible, setIsDrawerVisible] = useState<boolean>(false)
-  const { products, loading, setQueryParams, setPage, handleLoadMore } =
-    useProducts({})
+  const [searchTerm, setSearchTerm] = useState('')
+  const debouncedSearchTerm = useDebounce(searchTerm, 1000)
+
+  const {
+    products,
+    loading,
+    setQueryParams,
+    setPage,
+    handleLoadMore,
+    handleSearch,
+  } = useProducts({})
   const { categories } = useCategories()
 
+  //handle search with debounce
+  useEffect(() => {
+    handleSearch(debouncedSearchTerm)
+  }, [debouncedSearchTerm])
+
   const onSearchProduct = (values: any) => {
-    const { search, priceRange, price, time, theme, tier } = values
+    const { priceRange, price, time, theme, tier } = values
     const sortFields = []
     const sortOrders = []
 
+    //sort by price
     if (price && price !== 'All') {
       sortFields.push('price')
+      //sort by ascending or descending
       sortOrders.push(price)
     }
 
+    //sort by time
     if (time && time !== 'All') {
       sortFields.push('createdAt')
+      //sort by latest or oldest
       sortOrders.push(time === 'latest' ? 'desc' : 'asc')
     }
 
     const newQueryParams = {
-      title_like: search,
       price_gte: priceRange ? priceRange[0] : undefined,
       price_lte: priceRange ? priceRange[1] : undefined,
       _sort: sortFields.length ? sortFields.join(',') : undefined,
@@ -51,9 +73,11 @@ const ProductMarketplace = () => {
     setQueryParams(newQueryParams as ProductQueryParams)
     setPage(1)
   }
+
   const onCateClick = (categoryName?: string) => {
     setActiveCategory(categoryName)
     setQueryParams((prev) => ({ ...prev, category: categoryName }))
+    //reset page to 1
     setPage(1)
   }
 
@@ -67,32 +91,61 @@ const ProductMarketplace = () => {
     setIsDrawerVisible(!isDrawerVisible)
   }
 
+  const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value)
+  }
+
   return (
     <main className='size-full bg-[url("/images/content/content-bg.png")] bg-cover bg-center bg-no-repeat'>
       <div className='mx-auto flex max-w-[1700px] justify-center gap-6 p-10 lg:py-20'>
         <div className='hidden w-[380px] lg:block'>
+          <Input
+            prefix={<SearchOutlined className='!text-[#89888B]' />}
+            placeholder='Quick search'
+            className='mb-8 w-full bg-transparent'
+            size='large'
+            allowClear
+            onChange={onSearch}
+          />
           <FilterForm onSearch={onSearchProduct} onReset={onResetFilters} />
         </div>
 
         <div>
           <div className='px-2 lg:hidden'>
-            <Button
-              icon={<FilterOutlined />}
-              onClick={toggleDrawer}
-              className='mb-4'
-              size='large'
-            >
-              Filter
-            </Button>
+            <div className='flex items-start justify-between gap-4'>
+              <Button
+                icon={<FilterOutlined />}
+                onClick={toggleDrawer}
+                className='mb-4'
+                size='large'
+              >
+                Filter
+              </Button>
+              <Input
+                prefix={<SearchOutlined className='!text-[#89888B]' />}
+                placeholder='Quick search'
+                className='w-full bg-transparent'
+                size='large'
+                allowClear
+                onChange={onSearch}
+              />
+            </div>
             <Drawer
               title='Filter'
               placement='bottom'
               onClose={toggleDrawer}
-              className='!rounded-t-xl'
+              className='!rounded-t-xl !bg-black/90 !text-[#89888b]'
               open={isDrawerVisible}
               height='fit-content'
+              closeIcon={<CloseOutlined className='!text-[#89888b]' />}
             >
-              <FilterForm onSearch={onSearchProduct} onReset={onResetFilters} />
+              <FilterForm
+                onSearch={onSearchProduct}
+                onReset={() => {
+                  onResetFilters()
+                  toggleDrawer()
+                }}
+              />
             </Drawer>
           </div>
           <CategoryList

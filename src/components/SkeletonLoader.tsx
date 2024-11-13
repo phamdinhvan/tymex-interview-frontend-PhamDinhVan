@@ -3,7 +3,7 @@ import { Skeleton } from 'antd'
 const SkeletonLoader = () => {
   return (
     <div className='m-2 size-full rounded-lg bg-[#3A384199] p-4'>
-      <Skeleton.Node active className='min-h-[235px] min-w-[240px]' />
+      <Skeleton.Node active className='min-h-[235px] min-w-[280px]' />
       <div className='flex items-center justify-between px-1 py-4'>
         <Skeleton.Input active />
         <div className='flex items-center'>
