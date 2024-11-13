@@ -1,5 +1,6 @@
+import EmptyComponent from '@/components/EmptyComponent'
 import ShinyButton from '@/components/ShinyButton'
-import SkeletonLoader from '@/components/SkeletonLoader'
+import SkeletonLoaderList from '@/components/SkeletonLoader'
 import { Product } from '@/interfaces/common'
 import ProductCard from './ProductCard'
 
@@ -16,24 +17,28 @@ const ProductList: React.FC<ProductListProps> = ({
   itemsPerPage,
   loading,
 }) => {
+  const renderContent = () => {
+    if (loading) return <SkeletonLoaderList />
+    if (products.length === 0) return <EmptyComponent />
+
+    return (
+      <div className='mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
+        {products.map((product, i) => (
+          <ProductCard
+            key={i}
+            tier={product.tier}
+            title={product.title}
+            price={product.price}
+            isFavorite={product.isFavorite}
+            author={product.author}
+          />
+        ))}
+      </div>
+    )
+  }
   return (
     <div>
-      {loading ? (
-        <SkeletonLoader />
-      ) : (
-        <div className='mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
-          {products.map((product, i) => (
-            <ProductCard
-              key={i}
-              tier={product.tier}
-              title={product.title}
-              price={product.price}
-              isFavorite={product.isFavorite}
-              author={product.author}
-            />
-          ))}
-        </div>
-      )}
+      {renderContent()}
 
       {products.length >= itemsPerPage ? (
         <div className='mt-8 flex justify-center'>

@@ -14,7 +14,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
   onCategoryClick,
 }) => {
   return (
-    <div className='mb-4 flex flex-wrap gap-2'>
+    <div className='mb-4 flex max-w-[calc(100vw-4rem)] gap-2 overflow-x-auto whitespace-nowrap px-2 lg:flex-wrap'>
       <ShinyButton
         onClick={() => onCategoryClick(null)}
         className={cn(

@@ -7,6 +7,8 @@ import { useCategories } from '@/hooks/useCategories'
 import FilterForm from './FilterForm'
 import CategoryList from './CategoryList'
 import ProductList from './ProductList'
+import { Button, Drawer } from 'antd'
+import { FilterOutlined } from '@ant-design/icons'
 
 //override antd styles
 import './index.css'
@@ -15,6 +17,7 @@ import { ProductQueryParams } from '@/utils/api'
 
 const ProductMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const [isDrawerVisible, setIsDrawerVisible] = useState<boolean>(false)
   const { products, loading, setQueryParams, setPage, handleLoadMore } =
     useProducts({})
   const { categories } = useCategories()
@@ -60,19 +63,44 @@ const ProductMarketplace = () => {
     setPage(1)
   }
 
+  const toggleDrawer = () => {
+    setIsDrawerVisible(!isDrawerVisible)
+  }
+
   return (
     <main className='size-full bg-[url("/images/content/content-bg.png")] bg-cover bg-center bg-no-repeat'>
-      <div className='mx-auto flex max-w-[1700px] justify-center gap-6 px-10 py-20'>
-        <div className='w-[380px]'>
+      <div className='mx-auto flex max-w-[1700px] justify-center gap-6 p-10 lg:py-20'>
+        <div className='hidden w-[380px] lg:block'>
           <FilterForm onSearch={onSearchProduct} onReset={onResetFilters} />
         </div>
 
         <div>
+          <div className='px-2 lg:hidden'>
+            <Button
+              icon={<FilterOutlined />}
+              onClick={toggleDrawer}
+              className='mb-4'
+              size='large'
+            >
+              Filter
+            </Button>
+            <Drawer
+              title='Filter'
+              placement='bottom'
+              onClose={toggleDrawer}
+              className='!rounded-t-xl'
+              open={isDrawerVisible}
+              height='fit-content'
+            >
+              <FilterForm onSearch={onSearchProduct} onReset={onResetFilters} />
+            </Drawer>
+          </div>
           <CategoryList
             categories={categories}
             activeCategory={activeCategory}
             onCategoryClick={onCateClick}
           />
+
           <ProductList
             products={products}
             onLoadMore={handleLoadMore}

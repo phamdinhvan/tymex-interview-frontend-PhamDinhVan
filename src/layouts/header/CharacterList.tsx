@@ -10,7 +10,7 @@ import 'swiper/css/pagination'
 
 const CharacterList = () => {
   return (
-    <div className='bottom-0 left-0 pl-10 xl:absolute'>
+    <div className='bottom-0 left-0 xl:absolute xl:pl-10'>
       <div className='hidden p-3 xl:flex xl:flex-wrap xl:gap-10 2xl:gap-16 2xl:py-10'>
         {characterItems.map((character, index) => (
           <CharacterItem
