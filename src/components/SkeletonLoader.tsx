@@ -20,10 +20,12 @@ const SkeletonLoader = () => {
 
 const SkeletonLoaderList = () => {
   return (
-    <div className='mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
-      {Array.from({ length: 8 }).map((_, i) => (
-        <SkeletonLoader key={i} />
-      ))}
+    <div data-testid='skeleton-loader-list'>
+      <div className='mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4'>
+        {Array.from({ length: 8 }).map((_, i) => (
+          <SkeletonLoader key={i} />
+        ))}
+      </div>
     </div>
   )
 }

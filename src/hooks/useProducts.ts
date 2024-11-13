@@ -14,20 +14,20 @@ export const useProducts = (
   const [queryParams, setQueryParams] =
     useState<ProductQueryParams>(initialQueryParams)
 
-  const loadProducts = async (params: any = {}) => {
+  const loadProducts = async (params: ProductQueryParams = {}) => {
     try {
+      setLoading(true)
       const data = await fetchProducts({
         ...params,
         _page: page,
         _limit: itemsPerPage,
       })
 
-      //only set products when on page 1
       if (page === 1) {
         setProducts(data)
       }
     } catch (error) {
-      throw error
+      setProducts([])
     } finally {
       setLoading(false)
     }
@@ -46,6 +46,7 @@ export const useProducts = (
 
   const handleLoadMore = async () => {
     try {
+      setLoading(true)
       const data = await fetchProducts({
         ...queryParams,
         _page: page + 1,
@@ -54,7 +55,9 @@ export const useProducts = (
       setProducts((prevProducts) => [...prevProducts, ...data])
       setPage(page + 1)
     } catch (error) {
-      throw error
+      setProducts([])
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -74,7 +77,7 @@ export const useProducts = (
       setProducts(data)
       setPage(searchPage)
     } catch (error) {
-      throw error
+      setProducts([])
     } finally {
       setLoading(false)
     }

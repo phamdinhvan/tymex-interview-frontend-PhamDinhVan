@@ -18,7 +18,12 @@ const ProductList: React.FC<ProductListProps> = ({
   loading,
 }) => {
   const renderContent = () => {
-    if (loading) return <SkeletonLoaderList />
+    if (loading)
+      return (
+        <div data-testid='product-list-loading'>
+          <SkeletonLoaderList />
+        </div>
+      )
     if (products.length === 0) return <EmptyComponent />
 
     return (

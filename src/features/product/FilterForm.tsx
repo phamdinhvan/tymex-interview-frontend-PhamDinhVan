@@ -1,6 +1,5 @@
-import { Form, Input, Select, Slider, Button, Space } from 'antd'
-import { SearchOutlined } from '@ant-design/icons'
 import ShinyButton from '@/components/ShinyButton'
+import { Button, Form, Select, Slider, Space } from 'antd'
 
 interface FilterFormProps {
   onSearch: (values: any) => void

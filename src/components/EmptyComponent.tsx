@@ -6,7 +6,7 @@ interface EmptyComponentProps extends EmptyProps {}
 const EmptyComponent: React.FC<EmptyComponentProps> = (props) => {
   return (
     <div className='mt-20 flex h-full min-w-[calc(100vw-84rem)] items-center justify-center'>
-      <Empty {...props} />
+      <Empty data-testid='empty-state' {...props} />
     </div>
   )
 }

@@ -39,6 +39,7 @@ const ProductMarketplace = () => {
   //handle search with debounce
   useEffect(() => {
     handleSearch(debouncedSearchTerm)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm])
 
   const onSearchProduct = (values: any) => {

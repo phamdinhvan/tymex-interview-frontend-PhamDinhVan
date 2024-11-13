@@ -55,7 +55,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div className='w-fit rounded bg-[#313B4580] px-2 py-1 text-xs'>
               {tier}
             </div>
-            {isFavorite ? <HeartFilled /> : <HeartOutlined />}
+            {isFavorite ? (
+              <HeartFilled role='img' aria-label='favorite' />
+            ) : (
+              <HeartOutlined role='img' aria-label='not favorite' />
+            )}
           </div>
           <div className='flex w-full justify-center'>
             <Image
@@ -79,9 +83,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
         <div className='flex items-center gap-2'>
-          <Avatar src={author.avatar} />
+          <Avatar src={author?.avatar} aria-label='author avatar' />
           <div className='text-xs font-medium'>
-            {author.firstName} {author.lastName}
+            {author?.firstName} {author?.lastName}
           </div>
         </div>
       </div>
