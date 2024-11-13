@@ -5,7 +5,7 @@ import CharacterList from './CharacterList'
 import MainCharacter from './MainCharacter'
 
 import { cn } from '@/utils/cn'
-import { GlobalOutlined, MenuOutlined } from '@ant-design/icons'
+import { CloseOutlined, GlobalOutlined, MenuOutlined } from '@ant-design/icons'
 import { Drawer } from 'antd'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
@@ -94,6 +94,8 @@ const Header = () => {
         placement='left'
         onClose={onClose}
         open={open}
+        closeIcon={<CloseOutlined className='!text-[#89888b]' />}
+        className='!bg-black/90'
         styles={{
           body: {
             padding: 0,
@@ -112,9 +114,10 @@ const Header = () => {
               }}
               className={cn(
                 'py-2',
-                activeItem === item.label
-                  ? 'bg-gradient-to-r from-[#DA458F] to-[#DA34DD] bg-clip-text text-transparent'
-                  : 'text-gray-800 hover:bg-gradient-to-r hover:from-[#DA458F] hover:to-[#DA34DD] hover:bg-clip-text hover:text-transparent',
+                activeItem === item.label &&
+                  'bg-gradient-to-r from-[#DA458F] to-[#DA34DD] bg-clip-text text-transparent',
+                activeItem !== item.label &&
+                  'text-white hover:bg-gradient-to-r hover:from-[#DA458F] hover:to-[#DA34DD] hover:bg-clip-text hover:text-transparent',
               )}
             >
               {item.label}
