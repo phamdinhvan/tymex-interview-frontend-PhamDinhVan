@@ -79,7 +79,10 @@ const Header = () => {
           </button>
 
           <div className='flex items-center space-x-4'>
-            <ShinyButton title='Connect Wallet' className='px-4 text-sm' />
+            <ShinyButton
+              title='Connect Wallet'
+              className='px-4 py-2 text-sm font-medium'
+            />
             <button className='rounded-full bg-transparent p-2 text-white hover:bg-gray-800'>
               <GlobalOutlined className='text-xl' />
             </button>

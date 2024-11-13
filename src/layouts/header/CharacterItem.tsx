@@ -1,18 +1,19 @@
 import Image from 'next/image'
-import React from 'react'
 
 interface CharacterItemProps {
   src: string
   name: string
+  isSwiper?: boolean
 }
 
 const CharacterItem = ({ src, name }: CharacterItemProps) => (
-  <div className='flex flex-col items-center max-2xl:w-[16%]'>
+  <div className='flex flex-col items-center'>
     <div className='cursor-pointer items-center bg-transparent transition-transform duration-200 hover:-translate-y-1'>
       <Image
         src={src}
         alt='character'
         width={200}
+        loading='lazy'
         height={200}
         className='mb-3 object-cover'
       />

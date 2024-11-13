@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 const MainCharacter = () => {
   return (
-    <div className='absolute bottom-0 right-[8%] hidden max-2xl:w-1/5 xl:block 2xl:right-0'>
-      <div className='relative px-4'>
+    <div className='absolute bottom-0 right-0 hidden max-2xl:w-1/5 xl:block 2xl:right-0'>
+      <div className='relative pr-10'>
         <Image
           src='/images/header/main-cr.png'
           alt='Main character'
