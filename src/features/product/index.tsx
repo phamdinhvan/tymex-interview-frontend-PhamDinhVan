@@ -24,7 +24,7 @@ const ProductMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
   const [isDrawerVisible, setIsDrawerVisible] = useState<boolean>(false)
   const [searchTerm, setSearchTerm] = useState('')
-  const debouncedSearchTerm = useDebounce(searchTerm, 1000)
+  const debouncedSearchTerm = useDebounce(searchTerm, 500)
 
   const {
     products,
