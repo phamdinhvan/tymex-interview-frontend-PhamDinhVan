@@ -21,7 +21,11 @@ export const useProducts = (
         _page: page,
         _limit: itemsPerPage,
       })
-      setProducts(data)
+
+      //only set products when on page 1
+      if (page === 1) {
+        setProducts(data)
+      }
     } catch (error) {
       throw error
     } finally {

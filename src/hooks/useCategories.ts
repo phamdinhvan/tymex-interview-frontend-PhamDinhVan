@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { fetchCategories } from '@/utils/api'
 import { Category } from '@/interfaces/common'
-export const useCategories = () => {
+import { REFRESH_INTERVAL } from '@/constants/common'
+
+export const useCategories = (refreshInterval: number = REFRESH_INTERVAL) => {
   const [categories, setCategories] = useState<Category[]>([])
 
   const loadCategories = async () => {
@@ -15,6 +17,13 @@ export const useCategories = () => {
 
   useEffect(() => {
     loadCategories()
+
+    const intervalId = setInterval(() => {
+      loadCategories()
+    }, refreshInterval)
+
+    return () => clearInterval(intervalId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return { categories }

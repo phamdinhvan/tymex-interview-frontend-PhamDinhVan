@@ -36,11 +36,14 @@ const ProductList: React.FC<ProductListProps> = ({
       </div>
     )
   }
+
+  const hasMore = products.length >= itemsPerPage
+
   return (
     <div>
       {renderContent()}
 
-      {products.length >= itemsPerPage ? (
+      {hasMore ? (
         <div className='mt-8 flex justify-center'>
           <ShinyButton
             onClick={onLoadMore}
