@@ -63,7 +63,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
               alt='character-img'
               width={280}
               height={197}
-              objectFit='contain'
             />
           </div>
         </div>

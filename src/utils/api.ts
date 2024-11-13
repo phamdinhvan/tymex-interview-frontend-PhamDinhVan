@@ -11,6 +11,7 @@ export interface ProductQueryParams {
   category?: string // Filter by category
   theme?: string // Filter by theme
   isFavorite?: boolean // Filter by favorite status
+  tier?: string // Filter by tie
 }
 
 export async function fetchProducts(options: ProductQueryParams = {}) {

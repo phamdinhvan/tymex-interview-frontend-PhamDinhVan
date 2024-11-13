@@ -14,7 +14,7 @@ export const useProducts = (
   const [queryParams, setQueryParams] =
     useState<ProductQueryParams>(initialQueryParams)
 
-  const loadProducts = async (params: ProductQueryParams = {}) => {
+  const loadProducts = async (params: any = {}) => {
     try {
       const data = await fetchProducts({
         ...params,

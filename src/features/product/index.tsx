@@ -11,6 +11,7 @@ import ProductList from './ProductList'
 //override antd styles
 import './index.css'
 import { ITEMS_PER_PAGE } from '@/constants/common'
+import { ProductQueryParams } from '@/utils/api'
 
 const ProductMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
@@ -19,18 +20,34 @@ const ProductMarketplace = () => {
   const { categories } = useCategories()
 
   const onSearchProduct = (values: any) => {
-    const { search, priceRange, rarity, sort } = values
+    const { search, priceRange, price, time, theme, tier } = values
+    const sortFields = []
+    const sortOrders = []
+
+    if (price && price !== 'All') {
+      sortFields.push('price')
+      sortOrders.push(price)
+    }
+
+    if (time && time !== 'All') {
+      sortFields.push('createdAt')
+      sortOrders.push(time === 'latest' ? 'desc' : 'asc')
+    }
+
     const newQueryParams = {
       title_like: search,
       price_gte: priceRange ? priceRange[0] : undefined,
       price_lte: priceRange ? priceRange[1] : undefined,
-      _sort: sort,
-      category: rarity !== 'all' ? rarity : undefined,
+      _sort: sortFields.length ? sortFields.join(',') : undefined,
+      _order: sortOrders.length ? sortOrders.join(',') : undefined,
+      category: activeCategory,
+      theme: theme !== 'All' ? theme : undefined,
+      tier: tier !== 'All' ? tier : undefined,
     }
-    setQueryParams(newQueryParams)
+
+    setQueryParams(newQueryParams as ProductQueryParams)
     setPage(1)
   }
-
   const onCateClick = (categoryName?: string) => {
     setActiveCategory(categoryName)
     setQueryParams((prev) => ({ ...prev, category: categoryName }))
@@ -39,6 +56,7 @@ const ProductMarketplace = () => {
 
   const onResetFilters = () => {
     setQueryParams({})
+    setActiveCategory(null)
     setPage(1)
   }
 

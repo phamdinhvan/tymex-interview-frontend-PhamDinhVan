@@ -12,7 +12,10 @@ const Subcribe = () => {
           placeholder='Your email address'
           className='flex-1 rounded border border-gray-600 bg-transparent px-4 py-2'
         />
-        <ShinyButton title='Subcribe' className='text-sm' />
+        <ShinyButton
+          title='Subcribe'
+          className='px-4 py-2 text-sm font-semibold'
+        />
       </div>
     </div>
   )

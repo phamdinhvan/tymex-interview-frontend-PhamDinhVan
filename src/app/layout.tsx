@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import { Inter } from 'next/font/google'
-import '@/styles/globals.css'
+import { Inter, IBM_Plex_Mono } from 'next/font/google'
 import { AntdRegistry } from '@ant-design/nextjs-registry'
 import { ConfigProvider } from 'antd'
+import '@/styles/globals.css'
 
 const droneRangerProBold = localFont({
   src: './fonts/dronerangerpro_bold.otf',
@@ -11,6 +11,11 @@ const droneRangerProBold = localFont({
   weight: '100 900',
 })
 
+const ibmMono = IBM_Plex_Mono({
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--ibm-mono',
+})
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -29,7 +34,7 @@ export default function RootLayout({
   return (
     <html>
       <body
-        className={`${droneRangerProBold.variable} ${inter.className} antialiased`}
+        className={`${droneRangerProBold.variable} ${inter.className} ${ibmMono.variable} antialiased`}
       >
         <AntdRegistry>
           <ConfigProvider

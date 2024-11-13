@@ -10,6 +10,11 @@ interface FilterFormProps {
 const FilterForm: React.FC<FilterFormProps> = ({ onSearch, onReset }) => {
   const [form] = Form.useForm()
 
+  const onResetFilterForm = () => {
+    form.resetFields()
+    onReset()
+  }
+
   return (
     <Form form={form} onFinish={onSearch} layout='vertical'>
       <Form.Item name='search'>
@@ -18,6 +23,7 @@ const FilterForm: React.FC<FilterFormProps> = ({ onSearch, onReset }) => {
           placeholder='Quick search'
           className='w-full bg-transparent'
           size='large'
+          allowClear
         />
       </Form.Item>
       <Form.Item
@@ -54,51 +60,62 @@ const FilterForm: React.FC<FilterFormProps> = ({ onSearch, onReset }) => {
       <Space direction='vertical' className='w-full gap-4 bg-transparent'>
         <Form.Item name='tier' label='TIER'>
           <Select
+            allowClear
             size='large'
             className='w-full bg-transparent'
             options={[
-              { value: 'all', label: 'All' },
-              { value: 'tier', label: 'tier' },
+              { value: 'All', label: 'All' },
+              { value: 'Basic', label: 'Basic' },
+              { value: 'Deluxe', label: 'Deluxe' },
+              { value: 'Premium', label: 'Premium' },
             ]}
           />
         </Form.Item>
 
         <Form.Item name='theme' label='THEME'>
           <Select
+            allowClear
             size='large'
             className='w-full bg-transparent'
             options={[
-              { value: 'all', label: 'All' },
-              { value: 'tier', label: 'tier' },
+              { value: 'All', label: 'All' },
+              { value: 'Light', label: 'Light' },
+              { value: 'Dark', label: 'Dark' },
+              { value: 'Halloween', label: 'Halloween' },
+              { value: 'Colorful', label: 'Colorful' },
             ]}
           />
         </Form.Item>
 
         <Form.Item name='time' label='TIME'>
           <Select
+            allowClear
             size='large'
             className='w-full bg-transparent'
             options={[
-              { value: 'all', label: 'All' },
-              { value: 'tier', label: 'tier' },
+              { value: 'All', label: 'All' },
+              { value: 'asc', label: 'Latest' },
+              { value: 'desc', label: 'Oldest' },
             ]}
           />
         </Form.Item>
 
         <Form.Item name='price' label='PRICE'>
           <Select
+            allowClear
             size='large'
             className='w-full bg-transparent'
             options={[
-              { value: 'desc', label: 'Price: Low to High' },
-              { value: 'asc', label: 'Price: High to Low' },
+              { value: 'All', label: 'All' },
+              { value: 'asc', label: 'Low to High' },
+              { value: 'desc', label: 'High to Low' },
             ]}
           />
         </Form.Item>
       </Space>
 
       <div className='mt-4 flex gap-8'>
-        <Button onClick={onReset} className='btn-shiny'>
+        <Button onClick={onResetFilterForm} className='btn-shiny'>
           Reset Filter
         </Button>
         <ShinyButton

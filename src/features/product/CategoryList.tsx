@@ -1,3 +1,4 @@
+import ShinyButton from '@/components/ShinyButton'
 import { Category } from '@/interfaces/common'
 import { cn } from '@/utils/cn'
 
@@ -14,30 +15,28 @@ const CategoryList: React.FC<CategoryListProps> = ({
 }) => {
   return (
     <div className='mb-4 flex flex-wrap gap-2'>
-      <button
+      <ShinyButton
         onClick={() => onCategoryClick(null)}
         className={cn(
-          'hover:btn-shiny rounded-md px-4 py-2 text-white hover:bg-pink-500',
+          'px-4 py-2',
           activeCategory === null
             ? 'bg-gradient-to-r from-[#DA458F] to-[#DA34DD]'
             : 'bg-gradient-to-r from-[rgba(218,69,143,0.4)] to-[rgba(218,52,221,0.4)]',
         )}
-      >
-        All
-      </button>
+        title='All'
+      />
       {categories.map((category) => (
-        <button
+        <ShinyButton
           key={category.id}
           onClick={() => onCategoryClick(category.name)}
           className={cn(
-            'hover:btn-shiny rounded-md px-4 py-2 text-white hover:bg-pink-700',
+            'px-4 py-2 hover:bg-pink-700',
             activeCategory === category.name
               ? 'bg-gradient-to-r from-[#DA458F] to-[#DA34DD]'
               : 'bg-gradient-to-r from-[rgba(218,69,143,0.4)] to-[rgba(218,52,221,0.4)]',
           )}
-        >
-          {category.name}
-        </button>
+          title={category.name}
+        />
       ))}
     </div>
   )
