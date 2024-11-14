@@ -4,8 +4,8 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-    basePath: '/tymex-interview-frontend-PhamDinhVan',
-    assetPrefix: '/tymex-interview-frontend-PhamDinhVan',
+    basePath: '/',
+    assetPrefix: '/',
   },
 }
 
