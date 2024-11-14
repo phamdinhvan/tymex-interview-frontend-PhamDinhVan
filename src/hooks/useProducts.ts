@@ -38,6 +38,7 @@ export const useProducts = (
   useEffect(() => {
     loadProducts(queryParams)
 
+    //refresh products every 60 seconds
     const intervalId = setInterval(() => {
       loadProducts(queryParams)
     }, refreshInterval)
