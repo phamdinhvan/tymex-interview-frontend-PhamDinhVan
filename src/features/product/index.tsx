@@ -11,14 +11,18 @@ import {
 import { Button, Drawer, Input } from 'antd'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import CategoryList from './CategoryList'
-import FilterForm from './FilterForm'
-import ProductList from './ProductList'
 
 //override antd styles
 import { CATEGORIES } from '@/constants/category'
 import { useDebounce } from '@/hooks/useDebounce'
 import './index.css'
+
+import dynamic from 'next/dynamic'
+
+//lazy loading
+const CategoryList = dynamic(() => import('./CategoryList'))
+const FilterForm = dynamic(() => import('./FilterForm'))
+const ProductList = dynamic(() => import('./ProductList'))
 
 const ProductMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
