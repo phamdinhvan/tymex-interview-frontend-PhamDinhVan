@@ -1,24 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
+import { ITEMS_PER_PAGE } from '@/constants/common'
 import { useProducts } from '@/hooks/useProducts'
-import { useCategories } from '@/hooks/useCategories'
-import FilterForm from './FilterForm'
-import CategoryList from './CategoryList'
-import ProductList from './ProductList'
-import { Button, Drawer, Input } from 'antd'
+import { ProductQueryParams } from '@/utils/api'
 import {
   CloseOutlined,
   FilterOutlined,
   SearchOutlined,
 } from '@ant-design/icons'
-import { ITEMS_PER_PAGE } from '@/constants/common'
-import { ProductQueryParams } from '@/utils/api'
+import { Button, Drawer, Input } from 'antd'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import CategoryList from './CategoryList'
+import FilterForm from './FilterForm'
+import ProductList from './ProductList'
 
 //override antd styles
-import './index.css'
+import { CATEGORIES } from '@/constants/category'
 import { useDebounce } from '@/hooks/useDebounce'
+import './index.css'
 
 const ProductMarketplace = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
@@ -34,7 +34,6 @@ const ProductMarketplace = () => {
     handleLoadMore,
     handleSearch,
   } = useProducts({})
-  const { categories } = useCategories()
 
   //handle search with debounce
   useEffect(() => {
@@ -150,7 +149,7 @@ const ProductMarketplace = () => {
             </Drawer>
           </div>
           <CategoryList
-            categories={categories}
+            categories={CATEGORIES}
             activeCategory={activeCategory}
             onCategoryClick={onCateClick}
           />

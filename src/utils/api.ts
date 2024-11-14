@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5005'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
 
 export interface ProductQueryParams {
   _page?: number
@@ -25,40 +25,6 @@ export async function fetchProducts(options: ProductQueryParams = {}) {
     const url = `${API_BASE_URL}/products${queryString ? `?${queryString}` : ''}`
 
     const response = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    return response.json()
-  } catch (error) {
-    throw error
-  }
-}
-
-export async function fetchCategories() {
-  try {
-    const response = await fetch(`${API_BASE_URL}/categories`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    if (!response.ok) {
-      throw new Error('Network response was not ok')
-    }
-    return response.json()
-  } catch (error) {
-    throw error
-  }
-}
-
-export async function fetchProductById(id: number) {
-  try {
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
       headers: {
         'Content-Type': 'application/json',
       },

@@ -1,11 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import ProductMarketplace from '../index'
 import { useProducts } from '@/hooks/useProducts'
-import { useCategories } from '@/hooks/useCategories'
 
 // Mock the modules
 jest.mock('@/hooks/useProducts')
-jest.mock('@/hooks/useCategories')
 
 // Mock matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -55,9 +53,6 @@ describe('ProductMarketplace', () => {
       setPage: jest.fn(),
       handleLoadMore: jest.fn(),
       handleSearch: jest.fn(),
-    })
-    ;(useCategories as jest.Mock).mockReturnValue({
-      categories: [],
     })
   })
 

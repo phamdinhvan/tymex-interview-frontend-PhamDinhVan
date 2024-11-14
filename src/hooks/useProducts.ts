@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchProducts, ProductQueryParams } from '@/utils/api'
 import { Product } from '@/interfaces/common'
 import { ITEMS_PER_PAGE, REFRESH_INTERVAL } from '@/constants/common'
+import { message } from 'antd'
 
 export const useProducts = (
   initialQueryParams: ProductQueryParams = {},
@@ -27,6 +28,7 @@ export const useProducts = (
         setProducts(data)
       }
     } catch (error) {
+      message.error(`Failed to load more products: ${error?.message}`)
       setProducts([])
     } finally {
       setLoading(false)
@@ -55,6 +57,7 @@ export const useProducts = (
       setProducts((prevProducts) => [...prevProducts, ...data])
       setPage(page + 1)
     } catch (error) {
+      message.error(`Failed to load more products: ${error?.message}`)
       setProducts([])
     } finally {
       setLoading(false)
@@ -77,6 +80,7 @@ export const useProducts = (
       setProducts(data)
       setPage(searchPage)
     } catch (error) {
+      message.error(`Failed to search products: ${error?.message}`)
       setProducts([])
     } finally {
       setLoading(false)
