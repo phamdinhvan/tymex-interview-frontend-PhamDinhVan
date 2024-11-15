@@ -50,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       }}
       whileTap={{ scale: 0.95 }}
     >
-      <div className='m-2 size-full cursor-pointer rounded-lg bg-[#3A384199] p-4'>
+      <div className='m-2 size-full cursor-pointer rounded-lg bg-[#3A384199] p-4 text-white'>
         <div className={cn('rounded-lg bg-gradient-to-r', gradient)}>
           <div className='flex items-center justify-between p-2'>
             <div className='w-fit rounded bg-[#313B4580] px-2 py-1 text-xs'>
