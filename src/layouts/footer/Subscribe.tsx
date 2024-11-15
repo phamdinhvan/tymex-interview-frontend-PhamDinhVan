@@ -1,10 +1,10 @@
 import ShinyButton from '@/components/ShinyButton'
 
-const Subcribe = () => {
+const Subscribe = () => {
   return (
     <div>
       <h3 className='mb-4 font-[family-name:var(--drone-bold)] text-base font-bold md:text-lg'>
-        SUBCRIBE TO RECEIVE OUR LATEST UPDATE
+        SUBSCRIBE TO RECEIVE OUR LATEST UPDATE
       </h3>
       <div className='flex gap-2'>
         <input
@@ -13,7 +13,7 @@ const Subcribe = () => {
           className='flex-1 rounded border border-gray-600 bg-transparent px-4 py-2'
         />
         <ShinyButton
-          title='Subcribe'
+          title='Subscribe'
           className='px-4 py-2 text-sm font-semibold'
         />
       </div>
@@ -21,4 +21,4 @@ const Subcribe = () => {
   )
 }
 
-export default Subcribe
+export default Subscribe

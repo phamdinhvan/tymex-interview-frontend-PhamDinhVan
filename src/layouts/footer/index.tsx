@@ -1,6 +1,6 @@
 import Navigation from './Navigation'
 import Contact from './Contact'
-import Subcribe from './Subcribe'
+import Subscribe from './Subscribe'
 
 const Footer = () => {
   return (
@@ -9,7 +9,7 @@ const Footer = () => {
         <div className='grid grid-cols-1 gap-8 font-medium md:grid-cols-2 lg:grid-cols-3'>
           <Navigation />
           <Contact />
-          <Subcribe />
+          <Subscribe />
         </div>
         <div className='mt-12 flex flex-col items-center justify-between border-t border-gray-700 pt-6 font-medium md:flex-row'>
           <p className='text-center md:text-left'>
